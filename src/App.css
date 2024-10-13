@@ -1,0 +1,29 @@
+html, #root {
+  background-color: #dddddd9c;
+}
+table {
+  background-color: #000000;
+}
+form .form-group {
+  display: flex;
+}
+.form-group .col-auto {
+  margin: 0px 2px;
+}
+
+
+/* categories style */
+.spinner-border {
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+}
+
+.spinner-border-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+}
+.btn-group .btn:hover {
+  color: gainsboro;
+}
