@@ -1,6 +1,6 @@
-import About from './About';
+import About2 from './About2';
 import App from '../../App';
-const { BrowserRouter,Route, Routes, Outlet } = require("react-router-dom");
+const { BrowserRouter,Route, Routes } = require("react-router-dom");
 
 
 const Routers = () => {
@@ -10,10 +10,9 @@ const Routers = () => {
         <Routes>
             <Route path="/" element={<App/>} />
             <Route path="/home" element={<App/>} />
-            <Route path="/about" element={<About/>} />
+            <Route path="/about" element={<About2/>} />
         </Routes>
       </BrowserRouter>
-      <Outlet/>
     </>
   );
 }
