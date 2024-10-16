@@ -27,3 +27,9 @@ form .form-group {
 .btn-group .btn:hover {
   color: gainsboro;
 }
+
+.nav-Link {
+  margin: 0 20px;
+  color: #ffff;
+  text-decoration: none;
+}

@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
+import { Link } from 'react-router-dom';
 
 const  Header = () => {
     return (
@@ -10,8 +10,10 @@ const  Header = () => {
         <Container>
           <Navbar.Brand className="fw-bold">TNS Shop</Navbar.Brand>
           <Nav className="me-auto">
-            {/* <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
+            <Link className="nav-Link text-white-50" to="/home">Home</Link>
+            <Link className="nav-Link text-white-50" to="/about">About</Link>
+            {/* <Nav.Link href=""></Nav.Link>
+            <Nav.Link href=""></Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link> */}
           </Nav>
         </Container>
