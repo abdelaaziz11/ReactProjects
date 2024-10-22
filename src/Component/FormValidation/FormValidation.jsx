@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Alert } from 'react-bootstrap';
 
 const FormValidation = () => {
-    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors} } = useForm();
     const [show, setShow] = useState(false);
     const [formValues, setFormValues] = useState({
         name: '',
@@ -28,25 +28,22 @@ const FormValidation = () => {
             <div className="container my-4">
                 <form onSubmit={handleSubmit(onSubmit)}>
                 {show?
-          <>
-            <Alert className="mt-5" variant="success" onClose={() => setShow(false)} dismissible>
-              <p>
-                <strong>Success!</strong> Form Submited Successfully
-              </p>
-            </Alert>
-            <p></p>
-            </>
-            :
-            <p></p>
-        }
+                    <>
+                    <Alert className="mt-5" variant="success" onClose={() => setShow(false)} dismissible>
+                      <p>
+                        <strong>Success!</strong> Form Submited Successfully
+                      </p>
+                    </Alert>
+                    <p></p>
+                    </>
+                    :
+                    <p></p>
+                }
                     
-                    {/* <div class="alert alert-success">
-                        
-                        <strong>Success!</strong> Submited Successfully
-                    </div> */}
-                    
-                    {JSON.stringify(formValues)}
                     <hr />
+                    <h1>Form</h1>
+                    <hr/>
+                    <br/>
                     
                     <div className="Input-Label">
                         <label>Name</label>
@@ -56,14 +53,14 @@ const FormValidation = () => {
                             {...register("name", { required: true, maxLength: 25 })}
                         />
                         {errors.name && <p><small style={{color:'red'}}>Name is required</small></p>}
-                        {errors.name?.type === "maxLength" && <p><small style={{color:'red'}}>Max characters should be 25</small></p>}
+                        {errors.name?.type==="maxLength"&&<p><small style={{color:'red'}}>Max characters should be 25</small></p>}
                     </div>
                     <br />
                     <div className="Input-Label">
                         <label>Email</label>
                         <input
                             type="email"
-                            className="form-control"
+                            className="form-control email"
                             {...register("email", { required: true })}
                         />
                         {errors.email && <p><small style={{color:'red'}}>Email is required</small></p>}
@@ -95,7 +92,7 @@ const FormValidation = () => {
                     </div>
                     <br />
                     <div className="submit-btn">
-                        <button disabled={!isValid} type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
