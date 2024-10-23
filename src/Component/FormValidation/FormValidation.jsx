@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useForm } from 'react-hook-form';
 import { Alert } from 'react-bootstrap';
 
 const FormValidation = () => {
+
     const { register, handleSubmit, reset, formState: { errors} } = useForm();
     const [show, setShow] = useState(false);
     const [formValues, setFormValues] = useState({
@@ -59,11 +60,17 @@ const FormValidation = () => {
                     <div className="Input-Label">
                         <label>Email</label>
                         <input
-                            type="email"
-                            className="form-control email"
-                            {...register("email", { required: true })}
+                            type="text"
+                            className="form-control"
+                            {...register("email", { 
+                                required: "Email is required", 
+                                pattern: { 
+                                    value: /^\S+@\S+\.\S+$/, 
+                                    message: "Invalid email format" 
+                                } 
+                            })}
                         />
-                        {errors.email && <p><small style={{color:'red'}}>Email is required</small></p>}
+                        {errors.email && <p><small style={{color:'red'}}>{errors.email.message}</small></p>}
                     </div>
                     <br />
                     <div className="Input-Label">
