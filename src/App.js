@@ -2,14 +2,13 @@ import 'react-bootstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Headre from './Component/Header';
-import ParentPage from './Component/LanguageSwitcher/ParentPage';
-import Form from './Component/Form/Form';
+import Card from './Component/ContextAPI/Card';
 
 const App = () => {
   return (
     <>
       <Headre/>
-      <ParentPage/>
+      <Card/>
     </>
   );
 }

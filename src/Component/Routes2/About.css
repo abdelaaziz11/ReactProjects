@@ -1,0 +1,27 @@
+.container {
+  color: white;
+  background-color: black;
+  border-radius: 2rem;
+  padding: 10px;
+}
+
+h1 {
+  margin-left: 20px;
+}
+
+/*
+syntax of sass
+body {
+  .container {
+    color: white;
+    background-color: black;
+    border-radius: 2rem;
+    padding: 10px;
+  }
+
+  h1 {
+    margin-left: 20px;
+  }
+}
+*/
+/*# sourceMappingURL=About.css.map */
