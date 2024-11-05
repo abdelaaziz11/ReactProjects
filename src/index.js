@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Card from './Component/ContextAPI/App';
+import CarList from './Component/CarList/CarList';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Card/>
+    <CarList/>
   </React.StrictMode>
 );
