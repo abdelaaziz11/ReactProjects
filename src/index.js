@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import CarList from './Component/CarList/CarList';
+import UseCallBack from './Component/UseCallBack/useCallBack';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CarList/>
+    <UseCallBack/>
   </React.StrictMode>
 );
