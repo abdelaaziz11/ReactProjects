@@ -1,19 +1,24 @@
-import React, {useCallback, useEffect} from 'react';
+import React, { useCallback } from 'react';
 
-function Maths() {
-    const x = 12
-    const y = 13
-    // memoized function
+const UseCallBack = () => {
+    let a = 12;
+    let b = 18;
+
     const handleClick = useCallback(() => {
-        console.log(x+y)
-        return x+y
-    },[x,y])
+        let result = a + b
+        console.log(result);
+        return result;
+    }, [a, b]);
 
     return (
-        <div>
-            <button className="btn-primary btn" onClick={handleClick}>Calculate</button>
+        <div className="container m-4">
+            <h4>Click on this button to calcule</h4>
+            <button className="btn btn-primary" onClick={handleClick}>Calculate</button>
+            <ul>
+            <li>{handleClick()}</li>
+            </ul>
         </div>
     );
 }
 
-export default Maths;
+export default UseCallBack;
