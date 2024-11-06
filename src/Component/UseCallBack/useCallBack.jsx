@@ -1,21 +1,19 @@
-import React from 'react';
+import React, {useCallback, useEffect} from 'react';
 
-const useCallBack = () => {
-
-    let a = 12
-    let b = 18
-    const handelClick = () => {
-        let result = a + b
-        console.log(result)
-        return result
-    }
+function Maths() {
+    const x = 12
+    const y = 13
+    // memoized function
+    const handleClick = useCallback(() => {
+        console.log(x+y)
+        return x+y
+    },[x,y])
 
     return (
         <div>
-            <h1>Memoized UseCallBack Fonction</h1>
-            <button className="btn btn-primary" onClick={handelClick}>Click here</button>
+            <button className="btn-primary btn" onClick={handleClick}>Calculate</button>
         </div>
     );
 }
 
-export default useCallBack;
+export default Maths;
