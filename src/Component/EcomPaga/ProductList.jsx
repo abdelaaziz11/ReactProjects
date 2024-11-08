@@ -5,11 +5,11 @@ import {INITIAL_VALUES, productReducer} from './productReducer';
 
 const ProductList = () => {
 
-    const [productList, setProductList] = useState([]);
+    // const [productList, setProductList] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [categories, setCategoryList] = useState([]);
     const [currentCategory, setCurrentCategory] = useState();
-    const [productValue, dispatch] = useReducer(productReducer, INITIAL_VALUES);
+    const [productValues, dispatch] = useReducer(productReducer, INITIAL_VALUES);
 
     const displayCategories = () => {
         return categories.map((category, key) => 
@@ -27,9 +27,9 @@ const ProductList = () => {
     }
 
     const displayProducts = () => {
-        let productTemp = productValue.productList
+        let productTemp = productValues.productList
         if (searchInput !== undefined) {
-            productTemp = productList.filter(product => {
+            productTemp = productValues.productList.filter(product => {
                 return product.title.includes(searchInput) 
                 || product.id.toString().includes(searchInput)
                 || product.description.toString().includes(searchInput)
@@ -52,9 +52,17 @@ const ProductList = () => {
     }
         
     const getProducts = () => {
+        dispatch({type: 'ERROR', payload: {hasError: undefined}})
         fetch('https://fakestoreapi.com/products')
-            .then(res => res.json())
-            .then(res => setProductList(res))
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            return Promise.reject('Products fetch failed')
+        })
+        .then(response => dispatch({type: 'PRODUCTS', payload: {collection: response}}))
+        .catch(apiError => dispatch({type: 'ERROR', payload: {hasError: apiError}}))
+        .finally(() => dispatch({type: 'LOADING', payload: {isLoading: false}}))
     }
     const getCategory = () => {
         fetch('https://fakestoreapi.com/products/categories')
@@ -76,7 +84,18 @@ const ProductList = () => {
 
     return (
         <>
-            <div className="container-fluix mx-auto w-75 my-3">
+            {productValues.loading &&
+                <div className="spinner-border-container d-flex justify-content-center align-items-center position-fixed z-3 top-0">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            }
+            <div className='container-fluix mx-auto w-75 my-3'>
+                {productValues.error && <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> {productValues.error}.
+                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>}
                 <h3>Search</h3>
                 <form>
                     <div className="form-group">
@@ -86,6 +105,9 @@ const ProductList = () => {
                       
                     <div className="col-auto">
                         <input className="btn btn-primary" type="submit" value="search" onClick={handleSearch} />
+                        <input className='btn btn-secondary' type="reset" value='Reset' onClick={() => {
+                            setSearchInput(undefined)
+                        }}/>
                     </div>
                     </div>
                     <hr/>
