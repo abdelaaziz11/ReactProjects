@@ -17,7 +17,6 @@ const useFetch = (url, initialValue = []) => {
     useEffect(() => {
         setItems()
     }, []);
-
     return [data, errors]
 }
 
