@@ -1,18 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+import {UsersContext} from "./UsersApp";
 
-const UsersAdd = ({lastId, onAddUser}) => {
+
+const UsersAdd = ({onAddUser}) => {
+    const context = useContext(UsersContext);
+
     const name = useRef(null)
     const country = useRef(null)
 
+
     const handelSabmit = (e) => {
         e.preventDefault()
-        console.log({
-            name: name.current.value,
-            country: country.current.value
-        })
-        onAddUser( {
+        context.addUser( {
             payload: {
-                id: lastId+1,
+                id: context.lastId+1,
             name: name.current.value,
             country: country.current.value
         }})
@@ -24,7 +25,8 @@ const UsersAdd = ({lastId, onAddUser}) => {
             <form className="container mt-5" onSubmit={handelSabmit}>
                 <div className="mb-3">
                     <label htmlFor="currentId" className="form-label">Current id</label>
-                    <input type="text" className="form-control-plaintext" name="currentId" id="currentId" aria-describedby="emailHelp" value={lastId+1}/>
+                    <input type="text" className="form-control-plaintext" name="currentId" id="currentId"
+                     aria-describedby="emailHelp" value={context.lastId+1}/>
               </div>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">Name</label>
