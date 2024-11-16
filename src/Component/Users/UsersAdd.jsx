@@ -11,7 +11,7 @@ const UsersAdd = ({onAddUser}) => {
 
     const handelSabmit = (e) => {
         e.preventDefault()
-        context.addUser( {
+        context.actions.addUser( {
             payload: {
                 id: context.lastId+1,
             name: name.current.value,

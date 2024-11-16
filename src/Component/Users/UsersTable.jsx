@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {UsersContext} from "./UsersApp";
+import {BrowserRouter, Outlet, Link, Route, Routes} from 'react-router-dom';
 
+const UsersTable =({})=> {
+    const context = useContext(UsersContext);
 
-function UsersTable({users}) {
     return (
         <div className="container">
             <h1 className="mt-5">Users</h1>
@@ -12,17 +15,22 @@ function UsersTable({users}) {
                         <th>#ID</th>
                         <th>Name</th>
                         <th>Country</th>
+                        <th>Operations</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        (users.length > 0) ? users.map((user, key) => 
+                        (context.users.length > 0) ? context.users.map((user, key) => 
                         <tr key={key}>
                             <td>{user.id}</td>
                             <td>{user.name}</td>
                             <td>{user.country}</td>
+                            <td>
+                                <Link to={`/user/${user.id}/edit`} className={'btn btn-primary mx-1'}>Update</Link>
+                                <Link to={`/user/${user.id}/edit`} className={'btn btn-danger'}>Delete</Link>
+                            </td>
                         </tr>) 
-                        : <tr><td colSpan={3} align={'center'}> No Items</td></tr>
+                        : <tr><td colSpan={4} align={'center'}> No Items</td></tr>
                    }
                 </tbody>
             </table>
