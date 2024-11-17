@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {UsersContext} from "./UsersApp";
 import {BrowserRouter, Outlet, Link, Route, Routes} from 'react-router-dom';
 
-const UsersTable =({})=> {
+const UsersTable = () => {
     const context = useContext(UsersContext);
 
     return (
@@ -27,7 +27,7 @@ const UsersTable =({})=> {
                             <td>{user.country}</td>
                             <td>
                                 <Link to={`/user/${user.id}/edit`} className={'btn btn-primary mx-1'}>Update</Link>
-                                <Link to={`/user/${user.id}/edit`} className={'btn btn-danger'}>Delete</Link>
+                                <Link to={`/user/${user.id}/delete`} className={'btn btn-danger'}>Delete</Link>
                             </td>
                         </tr>) 
                         : <tr><td colSpan={4} align={'center'}> No Items</td></tr>

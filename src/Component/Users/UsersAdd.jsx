@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 import {UsersContext} from "./UsersApp";
 
 
-const UsersAdd = ({onAddUser}) => {
+const UsersAdd = () => {
     const context = useContext(UsersContext);
 
     const name = useRef(null)

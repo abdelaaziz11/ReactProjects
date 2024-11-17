@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {UsersContext} from "./UsersApp";
 
-const UsersUpdate = (props) => {
+const UsersUpdate = () => {
     const context = useContext(UsersContext);
     const params = useParams()
     const name = useRef(null)

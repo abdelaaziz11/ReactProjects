@@ -31,7 +31,7 @@ const UsersApp = () => {
         )
     }
     const deleteUser = (data) => {
-        setUsers(prevState => prevState.filter(user => user.id === data.payload.id))
+        setUsers(prevState => prevState.filter(user => user.id !== parseInt(data.payload.id)))
         window.history.back()
     }
     return (
