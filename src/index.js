@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import TodoList from './Component/Custom/CustomHooks/TodoList';
-import UserList from './Component/Custom/CustomHooks/UserList';
+import 'react-bootstrap';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import UsersApp from './Component/Users/UsersApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <TodoList/>
-    <UserList/>
+    <UsersApp/>
   </React.StrictMode>
 );
