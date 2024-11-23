@@ -1,14 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useCallback } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import {COUNTER_DECREMENT, COUNTER_INCREMENT, COUNTER_RESET} from './Reducers/CounterReducer';
+import { counterDecrement, counterIncrement, counterReset } from './store/CounterActions';
+import { counterSelector } from './store/CounterSelector';
 
 
 
-const Counter = ({counter, onIecrement, onDecrement, onReset}) => {
+const Counter = ({counter, increment, decrement, reset}) => {
 
-    const increment = () => onIecrement()
-    const decrement = () => onDecrement()
-    const reset = () => {onReset(0)}
+    
     return (
         <>
         <div className={'my-5'}>
@@ -23,21 +23,19 @@ const Counter = ({counter, onIecrement, onDecrement, onReset}) => {
     );
 }
 
-export const CounterStore = connect(
-    (state) => ({
-        counter: state.value
-    }),dispatch => ({
-        onIecrement: value => dispatch({
-            type: COUNTER_INCREMENT
-        }),
-        onDecrement: value => dispatch({
-            type: COUNTER_DECREMENT
-        }),
-        onReset: value => dispatch({
-            type: COUNTER_RESET,
-            payload: {value}
-        })
-    })
-)(Counter)
+export const CounterStore = () => {
+    const selector = useSelector(counterSelector)
+    const dispatch = useDispatch()
+
+    const increment = useCallback(() => dispatch(counterIncrement()))
+    const decrement = useCallback(() => dispatch(counterDecrement()))
+    const reset = useCallback(() => dispatch(counterReset(0))) 
+
+    return(
+        <div>
+            <Counter increment={increment} decrement={decrement} reset={reset} counter={selector}/>
+        </div>
+    )
+}
 
 export default Counter;
