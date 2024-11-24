@@ -1,4 +1,3 @@
-import { get } from 'react-hook-form';
 import {createStore} from 'redux';
 import {CounterReducer} from '../Reducers/CounterReducer';
 
